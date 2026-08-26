@@ -1,0 +1,58 @@
+# CDEK.Shopping parser — configuration
+
+site:
+  base_url: "https://cdek.shopping"
+  # Number of product cards a listing page returns
+  page_size: 60
+
+# Root sections to crawl. Leaf categories are discovered automatically.
+roots:
+  - key: luxury
+    title: "Люкс"
+    path: "/l/419/lyuksovye-brendy"
+    # Landings expose no brand filter, so borrow a category's brand directory
+    # to recognise brands in product titles.
+    brands_from: 3463
+  - key: perfume
+    title: "Духи"
+    path: "/l/568/parfyumeriya"
+    brands_from: 907
+  - key: clothing
+    title: "Одежда"
+    path: "/c/257/odezda"
+  - key: sneakers
+    title: "Кроссовки"
+    path: "/c/2685/krossovki"
+
+crawl:
+  # Only discounted products
+  only_sale: true
+  # default_sorting | price_asc | price_desc | sale_desc
+  sort_by: "sale_desc"
+  # Stop paging a listing once discount drops below this (0 = take everything).
+  # Sorted by discount descending, so this cuts the run short dramatically:
+  # >=50% is roughly 2.7k pages against 37k for everything.
+  min_discount: 50
+  # Hard cap on pages per listing (0 = no cap). Safety net for deep pagination.
+  max_pages_per_listing: 0
+  # Brand ids to crawl. Empty = crawl categories without a brand filter.
+  brands: []
+  # The brand filter returns at most 500 names per category, so the directory
+  # is also sampled from the biggest leaves. More leaves = better title-based
+  # brand recognition, at one request each.
+  brand_sample_leaves: 12
+  # Politeness
+  delay_ms: [900, 1800]
+  workers: 4
+  retries: 3
+  timeout_s: 30
+
+paths:
+  db: "data/cdek.sqlite"
+  state: "data/state.json"
+  exports: "data/exports"
+
+web:
+  host: "127.0.0.1"
+  port: 8777
+  page_size: 100

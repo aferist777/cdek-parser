@@ -1,0 +1,130 @@
+/* Deliberately plain: system fonts, hairline rules, no rounding, no shadows,
+   no transitions. Everything on screen is either data or a control. */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0 0 26px 0;
+    background: #fff;
+    color: #222;
+    font: 12px/1.4 "Segoe UI", Tahoma, Verdana, sans-serif;
+}
+
+/* -- title bar --------------------------------------------------------- */
+#bar {
+    border-bottom: 1px solid #999;
+    background: #eee;
+    padding: 4px 8px;
+}
+#title { font-weight: bold; }
+#lastrun { color: #666; float: right; }
+
+/* -- panels ------------------------------------------------------------ */
+#panels { width: 100%; border-collapse: collapse; }
+#panels td { padding: 0; }
+
+fieldset {
+    border: 1px solid #ccc;
+    margin: 6px 8px;
+    padding: 4px 8px 6px 8px;
+}
+legend { color: #444; padding: 0 4px; }
+
+label { margin-right: 12px; white-space: nowrap; display: inline-block; }
+
+input[type=text], input[type=number], select {
+    font: 12px "Segoe UI", Tahoma, Verdana, sans-serif;
+    border: 1px solid #aaa;
+    background: #fff;
+    color: #222;
+    padding: 2px 4px;
+    height: 22px;          /* room for descenders; never clip the text */
+    vertical-align: middle;
+}
+select { height: 23px; padding-right: 2px; }
+input[type=number] { width: 58px; }
+input[type=text] { width: 150px; }
+#f-q { width: 190px; }
+#f-brand, #f-root { min-width: 130px; }
+#f-sort { min-width: 150px; }
+
+button {
+    font: 12px "Segoe UI", Tahoma, Verdana, sans-serif;
+    border: 1px solid #888;
+    background: #f0f0f0;
+    padding: 2px 10px;
+    height: 22px;
+    cursor: pointer;
+}
+button:disabled { color: #999; border-color: #bbb; cursor: default; }
+button:active:not(:disabled) { background: #e0e0e0; }
+
+.chip {
+    display: inline-block;
+    border: 1px solid #aaa;
+    background: #f6f6f6;
+    padding: 1px 4px;
+    margin-right: 3px;
+}
+.chip a { color: #a00; text-decoration: none; margin-left: 4px; font-weight: bold; }
+
+#r-status { color: #444; }
+#r-status.err { color: #a00; }
+
+/* -- list -------------------------------------------------------------- */
+#list { width: 100%; border-collapse: collapse; }
+#list th {
+    text-align: left;
+    font-weight: normal;
+    color: #555;
+    background: #f4f4f4;
+    border-bottom: 1px solid #bbb;
+    padding: 3px 6px;
+    position: sticky;
+    top: 0;
+}
+#list td {
+    border-bottom: 1px solid #eee;
+    padding: 2px 6px;
+    vertical-align: middle;
+}
+#list tr:hover td { background: #f7f7f7; }
+
+.c-img   { width: 72px; }
+.c-disc  { width: 70px;  text-align: right; }
+.c-price { width: 90px;  text-align: right; }
+.c-old   { width: 90px;  text-align: right; }
+
+#list td.c-img { padding: 1px 4px; }
+#list img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    background: #fafafa;
+    border: 1px solid #eee;
+    display: block;
+}
+
+.name a { color: #00c; text-decoration: none; }
+.name a:visited { color: #529; }
+.name a:hover { text-decoration: underline; }
+.meta { color: #777; }
+
+.disc { color: #a00; }
+.price { font-weight: bold; }
+.old { color: #888; text-decoration: line-through; }
+
+#more { padding: 6px 8px; color: #666; }
+#more button { margin-right: 8px; }
+
+/* -- status bar -------------------------------------------------------- */
+#status {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    border-top: 1px solid #999;
+    background: #eee;
+    padding: 3px 8px;
+}
+#status a { color: #00c; }
+.sep { color: #aaa; margin: 0 6px; }

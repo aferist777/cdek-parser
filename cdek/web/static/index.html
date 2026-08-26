@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>CDEK Sales</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="bar">
+  <span id="title">CDEK Sales</span>
+  <span id="lastrun">—</span>
+</div>
+
+<table id="panels"><tr>
+  <td id="cell-crawl">
+    <fieldset>
+      <legend>Парсинг</legend>
+      <label>Скидка от <input type="number" id="r-discount" min="0" max="95" step="5" value="50"> %</label>
+      <label>Потоков <input type="number" id="r-workers" min="1" max="16" value="4"></label>
+      <label>Страниц на категорию <input type="number" id="r-maxpages" min="0" value="0" title="0 — без ограничения"></label>
+      <span id="r-roots"></span>
+      <label>Бренды <input type="text" id="r-brand-input" list="brand-list" placeholder="все" autocomplete="off"></label>
+      <datalist id="brand-list"></datalist>
+      <span id="r-brand-chips"></span>
+      <label><input type="checkbox" id="r-resume"> продолжить прошлый</label>
+      <button id="btn-run">Запустить</button>
+      <button id="btn-stop" disabled>Остановить</button>
+      <span id="r-status"></span>
+    </fieldset>
+  </td>
+</tr><tr>
+  <td id="cell-filter">
+    <fieldset>
+      <legend>Фильтр</legend>
+      <label>Раздел <select id="f-root"></select></label>
+      <label>Бренд <select id="f-brand"></select></label>
+      <label>Скидка от <input type="number" id="f-discount" min="0" max="95" step="5" value="0"> %</label>
+      <label>Цена <input type="number" id="f-pmin" placeholder="от"> — <input type="number" id="f-pmax" placeholder="до"></label>
+      <label>Поиск <input type="text" id="f-q" placeholder="название"></label>
+      <label>Сортировка
+        <select id="f-sort">
+          <option value="discount">по скидке</option>
+          <option value="saving">по выгоде в рублях</option>
+          <option value="price_asc">сначала дешевле</option>
+          <option value="price_desc">сначала дороже</option>
+          <option value="newest">сначала новые</option>
+        </select>
+      </label>
+      <button id="btn-reset">Сбросить</button>
+    </fieldset>
+  </td>
+</tr></table>
+
+<table id="list">
+  <thead><tr>
+    <th class="c-img"></th>
+    <th class="c-name">Товар</th>
+    <th class="c-disc">Скидка</th>
+    <th class="c-price">Цена</th>
+    <th class="c-old">Было</th>
+  </tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+
+<div id="more"></div>
+
+<div id="status">
+  <span id="count">—</span>
+  <span class="sep">|</span>
+  <a href="#" id="exp-csv">Экспорт CSV</a>
+  <span class="sep">|</span>
+  <a href="#" id="exp-xlsx">Экспорт XLSX</a>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
